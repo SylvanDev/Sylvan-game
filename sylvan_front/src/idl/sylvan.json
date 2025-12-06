@@ -1,0 +1,261 @@
+{
+  "address": "2ZruFMPznDSMcTry1X4JemNDrA284jiy7mjWV7LW77Aw",
+  "metadata": {
+    "name": "sylvan_new",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Sylvan MVP smart contract"
+  },
+  "instructions": [
+    {
+      "name": "create_land_plot",
+      "discriminator": [
+        33,
+        47,
+        157,
+        213,
+        49,
+        160,
+        90,
+        88
+      ],
+      "accounts": [
+        {
+          "name": "land_plot",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  100
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "harvest",
+      "discriminator": [
+        228,
+        241,
+        31,
+        182,
+        53,
+        169,
+        59,
+        199
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "land_plot",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  100
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "syl_mint",
+          "writable": true
+        },
+        {
+          "name": "vault_authority",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vault_token_account",
+          "writable": true
+        },
+        {
+          "name": "player_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program",
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "revive_land_plot",
+      "discriminator": [
+        11,
+        31,
+        193,
+        166,
+        163,
+        137,
+        220,
+        252
+      ],
+      "accounts": [
+        {
+          "name": "land_plot",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  108,
+                  97,
+                  110,
+                  100
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          }
+        },
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "LandPlot",
+      "discriminator": [
+        40,
+        99,
+        212,
+        202,
+        132,
+        151,
+        126,
+        162
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "NotOwner",
+      "msg": "You are not the owner of this land plot."
+    },
+    {
+      "code": 6001,
+      "name": "NotDead",
+      "msg": "The land plot is not dead."
+    },
+    {
+      "code": 6002,
+      "name": "NotReadyToHarvest",
+      "msg": "The land plot is not ready to be harvested."
+    }
+  ],
+  "types": [
+    {
+      "name": "LandPlot",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "pubkey"
+          },
+          {
+            "name": "state",
+            "type": {
+              "defined": {
+                "name": "LandState"
+              }
+            }
+          },
+          {
+            "name": "fertility",
+            "type": "u8"
+          },
+          {
+            "name": "last_harvest",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "LandState",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Dead"
+          },
+          {
+            "name": "Growing"
+          },
+          {
+            "name": "ReadyToHarvest"
+          }
+        ]
+      }
+    }
+  ]
+}

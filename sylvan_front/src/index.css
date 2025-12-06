@@ -1,0 +1,59 @@
+/* src/index.css */
+
+/*
+  Секция @font-face "регистрирует" ваш шрифт 'Origin Tech' в приложении.
+*/
+@font-face {
+  font-family: 'Origin Tech';
+  src: url('/fonts/OriginTech.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*
+  Здесь мы говорим всему приложению использовать шрифт 'Origin Tech' по умолчанию.
+*/
+body {
+  margin: 0;
+  font-family: 'Origin Tech', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*
+  НОВЫЕ АНИМАЦИИ ДЛЯ ЭКРАНА-ЗАСТАВКИ
+*/
+
+/* Анимация пульсации для надписи [ ENTER ] */
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
+/* Анимация плавного появления для основного контента */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

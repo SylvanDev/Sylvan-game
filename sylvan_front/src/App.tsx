@@ -90,11 +90,11 @@ const App: React.FC = () => {
               <WalletMultiButton />
             </div>
 
-            {/* --- НОВЫЙ БЛОК: ПРЕДУПРЕЖДЕНИЕ О DEVNET --- */}
+            {/* БЛОК DEVNET */}
             <div style={{
               marginTop: "30px",
               padding: "15px",
-              background: "rgba(255, 215, 0, 0.1)", // Золотистый полупрозрачный фон
+              background: "rgba(255, 215, 0, 0.1)",
               border: "1px solid #ffd700",
               borderRadius: "10px",
               maxWidth: "400px",
@@ -112,23 +112,46 @@ const App: React.FC = () => {
                 href="https://faucet.solana.com/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                style={{
-                  color: "#00ffbb",
-                  textDecoration: "underline",
-                  fontWeight: "bold",
-                  cursor: "pointer"
-                }}
+                style={{ color: "#00ffbb", textDecoration: "underline", fontWeight: "bold", cursor: "pointer" }}
               >
                 💧 Get Free Test SOL
               </a>
             </div>
-            {/* ------------------------------------------- */}
+
+            {/* --- НОВЫЙ БЛОК: СОЦСЕТИ --- */}
+            <div style={{
+              marginTop: "40px",
+              display: "flex",
+              gap: "25px",
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              textShadow: "0 0 10px rgba(0,0,0,0.5)"
+            }}>
+              <a href="https://x.com/SergeySylvan" target="_blank" rel="noopener noreferrer" style={socialLinkStyle}>
+                🐦 TWITTER
+              </a>
+              <a href="https://t.me/sylvangame" target="_blank" rel="noopener noreferrer" style={socialLinkStyle}>
+                ✈️ TELEGRAM
+              </a>
+              <a href="https://discord.gg/W3JB67Tcf3" target="_blank" rel="noopener noreferrer" style={socialLinkStyle}>
+                👾 DISCORD
+              </a>
+            </div>
+            {/* --------------------------- */}
 
           </div>
         )}
       </div>
     </div>
   );
+};
+
+// Стили для ссылок (белые, при наведении зеленые - работает через CSS глобально, тут база)
+const socialLinkStyle: React.CSSProperties = {
+  color: "white",
+  textDecoration: "none",
+  transition: "color 0.3s ease",
+  borderBottom: "1px solid transparent"
 };
 
 export default App;

@@ -11,13 +11,15 @@ import {
   SystemProgram,
   Transaction,
   PublicKey,
-  LAMPORTS_PER_SOL,
-  clusterApiUrl
+  LAMPORTS_PER_SOL
 } from "@solana/web3.js";
 
-// Адрес вашей казны и подключение к Devnet
+// Адрес вашей казны
 const TREASURY_ADDRESS = new PublicKey("BMEhBwCvjB6yzHTYhbEktuBgc6VBq5utHq1fSpVALPKU");
-const connection = new Connection(clusterApiUrl("devnet"), "confirmed");
+
+// --- ИСПРАВЛЕНИЕ: Ставим прямой адрес Solana Devnet ---
+const connection = new Connection("https://api.devnet.solana.com", "confirmed");
+// -----------------------------------------------------
 
 const LandsPage: React.FC = () => {
   const navigate = useNavigate();
@@ -28,12 +30,11 @@ const LandsPage: React.FC = () => {
 
   const backgroundVideo = "/infected_land.mp4";
 
-  // --- ВАШИ НОВЫЕ НАЗВАНИЯ И ЦЕНЫ ---
   const lands = [
     {
       name: "🏜️ Wild Lands",
       desc: "A rare resource, stable farming.",
-      priceSOL: 0.25, // <- Ваша цена
+      priceSOL: 0.25,
       video: "/desert.mp4",
       key: "desert",
       enabled: true,
@@ -63,7 +64,6 @@ const LandsPage: React.FC = () => {
       enabled: false,
     },
   ];
-  // ---------------------------------
 
   useEffect(() => {
     if (isInitialized && !connected) {

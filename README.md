@@ -1,4 +1,10 @@
-# 🌿 Sylvan: Play-to-Reclaim on Solana
+# 🌿 Sylvan: Play-to-Reclaim on Solana 
+
+### 🎬 Sylvan | Official Cinematic Trailer | Play-to-Reclaim on Solana
+
+[![Watch Sylvan Trailer](https://github.com/user-attachments/assets/58b66456-5a33-4efc-a405-4b1ebb442caf)](https://www.youtube.com/watch?v=r_NjcVtvxlQ)
+
+> *Click the image above to watch the full trailer.*
 
 **The first deflationary strategy game where players heal the planet to earn.**
 *Built by a Solo Dev. No VCs. 100% On-Chain Economy.*
@@ -22,7 +28,7 @@ Every Land plot decays over time. Players must burn tokens (Resources) to mainta
 This project is built using the **Solana Anchor Framework**.
 
 *   **Smart Contracts:** Rust (Anchor)
-*   **Frontend:** Next.js / TypeScript
+*   **Frontend:** React + Vite / TypeScript
 *   **Integration:** Solana Wallet Adapter (Phantom/Solflare)
 *   **Testing:** Mocha / Chai
 
@@ -34,7 +40,7 @@ This project is built using the **Solana Anchor Framework**.
 ## 🔗 Official Links
 * Twitter: @SergeySylvan
 * Discord: discord.gg/W3JB67Tcf3
-* Mint Page: indie.fun/sylvan
+* Play MVP: https://www.sylvan.world
 
 ## 📂 Repository Structure
 

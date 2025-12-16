@@ -2,7 +2,7 @@
 
 ### 🎬 Sylvan | Official Cinematic Trailer | Play-to-Reclaim on Solana
 
-[![Watch Sylvan Trailer](https://github.com/user-attachments/assets/58b66456-5a33-4efc-a405-4b1ebb442caf)]((https://www.youtube.com/watch?v=r_NjcVtvxlQ))
+[![Watch Sylvan Trailer](https://github.com/user-attachments/assets/58b66456-5a33-4efc-a405-4b1ebb442caf)](https://www.youtube.com/watch?v=r_NjcVtvxlQ)
 
 > *Click the image above to watch the full trailer.*
 

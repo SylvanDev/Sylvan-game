@@ -1,5 +1,11 @@
 # 🌿 Sylvan: Play-to-Reclaim on Solana 
 
+### 🎬 Sylvan | Official Cinematic Trailer | Play-to-Reclaim on Solana
+
+[![Watch Sylvan Trailer](https://github.com/user-attachments/assets/58b66456-5a33-4efc-a405-4b1ebb442caf)](СЮДА_ВСТАВЬ_ССЫЛКУ_НА_ВИДЕО)
+
+> *Click the image above to watch the full trailer.*
+
 **The first deflationary strategy game where players heal the planet to earn.**
 *Built by a Solo Dev. No VCs. 100% On-Chain Economy.*
 

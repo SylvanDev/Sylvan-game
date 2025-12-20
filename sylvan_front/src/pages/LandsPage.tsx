@@ -18,7 +18,7 @@ import {
 const TREASURY_ADDRESS = new PublicKey("BMEhBwCvjB6yzHTYhbEktuBgc6VBq5utHq1fSpVALPKU");
 
 // --- ИСПРАВЛЕНИЕ: Ставим прямой адрес Solana Devnet ---
-const connection = new Connection("https://api.devnet.solana.com", "confirmed");
+const connection = new Connection("https://devnet.helius-rpc.com/?api-key=2a67d452-0b09-42fc-8594-661b31688352", "confirmed");
 // -----------------------------------------------------
 
 const LandsPage: React.FC = () => {

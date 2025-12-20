@@ -1,8 +1,11 @@
+// src/pages/MyLandPage.tsx
+
 import React, { useEffect, useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useSylvanGameStore } from "../hooks/useSylvanGameStore";
+import PackModal from "../components/PackModal"; // <--- 1. ИМПОРТ
 
 const landsData: { [key: string]: { name: string; video: string; reclaimedVideo: string } } = {
   desert: { name: "🏜️ Wild Lands", video: "/desert.mp4", reclaimedVideo: "/reclaimed_land.mp4" },
@@ -18,6 +21,9 @@ const MyLandPage: React.FC = () => {
   const [isReclaiming, setIsReclaiming] = useState(false);
   const [timer, setTimer] = useState(RECLAMATION_TIME);
   const [claimStatus, setClaimStatus] = useState<"idle" | "loading" | "error">("idle");
+  
+  // <--- 2. НОВОЕ СОСТОЯНИЕ ДЛЯ ОКНА
+  const [showPackModal, setShowPackModal] = useState(false);
 
   const landInfo = useMemo(() => {
     if (!playerData.landKey) return null;
@@ -49,26 +55,34 @@ const MyLandPage: React.FC = () => {
     setIsReclaiming(true);
   };
 
-  // 🌱 Получение награды
+  // 🌱 Получение награды (ОБНОВЛЕНО ДЛЯ ПАКОВ)
   const handleClaimReward = async () => {
     if (!publicKey) return alert("Wallet not connected!");
     setClaimStatus("loading");
 
+    // --- ИМИТАЦИЯ ДЛЯ ДЕМО (ЧТОБЫ ПАКИ ОТКРЫЛИСЬ 100%) ---
+    // Ждем 1.5 секунды, как будто идет транзакция
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    setRewardClaimed();
+    setClaimStatus("idle");
+    setShowPackModal(true); // <--- 3. ОТКРЫВАЕМ ОКНО
+    // -----------------------------------------------------
+
+    /* 
+    // ЕСЛИ НУЖЕН РЕАЛЬНЫЙ БЭКЕНД, РАСКОММЕНТИРУЙ ЭТОТ БЛОК:
     try {
       const response = await fetch("http://localhost:4000/api/claim", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ recipient: publicKey.toBase58() }),
       });
-
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || "Failed to claim reward");
-
       console.log("Reward claimed successfully. Signature:", result.signature);
-
+      
       setRewardClaimed();
-      alert("🎉 Reward claimed successfully! Check your Devnet wallet.");
-
+      setShowPackModal(true); // Открываем окно после успеха
     } catch (error: any) {
       console.error("Claim reward error:", error);
       setClaimStatus("error");
@@ -76,6 +90,7 @@ const MyLandPage: React.FC = () => {
     } finally {
       setClaimStatus("idle");
     }
+    */
   };
 
   const backgroundVideo = playerData.isReclaimed
@@ -97,7 +112,10 @@ const MyLandPage: React.FC = () => {
         textAlign: "center",
       }}
     >
-      {/* 🎬 Видео участка */}
+      {/* <--- 4. САМО ОКНО (ВСТАВЛЕНО СЮДА) */}
+      {showPackModal && <PackModal onClose={() => setShowPackModal(false)} />}
+
+      {/* 🎬 Видео участка (ТВОИ СТИЛИ СОХРАНЕНЫ) */}
       <video
         key={backgroundVideo}
         autoPlay
@@ -112,11 +130,11 @@ const MyLandPage: React.FC = () => {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          zIndex: 0, // Исправлено: видео под слоями
+          zIndex: 0, 
         }}
       />
 
-      {/* 🌍 Интерфейс поверх видео */}
+      {/* 🌍 Интерфейс поверх видео (ТВОИ СТИЛИ СОХРАНЕНЫ) */}
       <div
         style={{
           position: "absolute",
@@ -154,11 +172,12 @@ const MyLandPage: React.FC = () => {
               cursor: claimStatus === "loading" ? "wait" : "pointer",
             }}
           >
-            {claimStatus === "loading" ? "Claiming..." : "🌱 Claim Reward"}
+            {claimStatus === "loading" ? "Opening..." : "🌱 Claim Reward"}
           </button>
         )}
 
-        {playerData.isReclaimed && playerData.rewardClaimed && (
+        {/* Показываем надпись ТОЛЬКО если паки уже закрыты или награда получена, но окно не открыто */}
+        {playerData.isReclaimed && playerData.rewardClaimed && !showPackModal && (
           <h3
             style={{
               marginTop: "20px",

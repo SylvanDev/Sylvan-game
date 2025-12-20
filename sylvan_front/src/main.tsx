@@ -8,29 +8,31 @@ import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { PhantomWalletAdapter } from "@solana/wallet-adapter-wallets";
 
-// Импортируем наши компоненты
-import App from "./App"; // Это наша HomePage
+import App from "./App";
 import LandsPage from "./pages/LandsPage";
 import MyLandPage from "./pages/MyLandPage";
-import Layout from "./Layout"; // <-- Импортируем наш новый Layout
+import Layout from "./Layout";
 
 import "./index.css";
 import "@solana/wallet-adapter-react-ui/styles.css";
 
+// --- НАСТРОЙКИ СЕТИ ---
 const network = WalletAdapterNetwork.Devnet;
-const endpoint = "https://api.devnet.solana.com";
+
+// Твой Helius ключ (правильный)
+const endpoint = "https://devnet.helius-rpc.com/?api-key=2a67d452-0b09-42fc-8594-661b31688352";
+
 const wallets = [new PhantomWalletAdapter()];
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ConnectionProvider endpoint={endpoint}>
-      <WalletProvider wallets={wallets} autoConnect>
+      {/* 👇 ВОТ ТУТ МЫ ОТКЛЮЧИЛИ АВТО-ПОДКЛЮЧЕНИЕ */}
+      <WalletProvider wallets={wallets} autoConnect={false}>
         <WalletModalProvider>
           <Router>
             <Routes>
-              {/* Мы создаем "родительский" маршрут, который использует Layout */}
               <Route path="/" element={<Layout />}>
-                {/* А все дочерние страницы теперь будут отображаться внутри Outlet */}
                 <Route index element={<App />} />
                 <Route path="lands" element={<LandsPage />} />
                 <Route path="my-land" element={<MyLandPage />} />
